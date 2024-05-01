@@ -42,7 +42,7 @@ class GameSeries
     sorted_players = stats.map do |name, data|
       {player_name: name}.merge(data)
     end.sort_by { |player| player[:win_rate] }.reverse
-    @leader_board = sorted_players.each_with_index.map { |player, i| "#{i+1}: #{ player[:player_name] } - win_rate: " + "#{ player[:win_rate] * 100 }%".colorize(:light_blue) + " placements_score: " + "#{ player[:placement_score] }".colorize(:red) + " average_end_game_$$: " + "$#{ player[:avg_score] }".colorize(:green) + " total_money_won: " + "$#{ player[:total_money_won] }".colorize(:green) }
+    @leader_board = sorted_players.each_with_index.map { |player, i| "#{i+1}: #{ player[:player_name] } - win_rate: " + "#{ player[:win_rate] }%".colorize(:light_blue) + " placements_score: " + "#{ player[:placement_score] }".colorize(:red) + " average_end_game_$$: " + "$#{ player[:avg_score] }".colorize(:green) + " total_money_won: " + "$#{ player[:total_money_won] }".colorize(:green) }
   end
 
   def print_summary
