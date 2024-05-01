@@ -25,12 +25,12 @@ class GameSeries
         scores = data[:scores]
         placements = data[:placements]
 
-        win_rate = placements.count(0).to_f / placements.length.to_f
+        win_rate = placements.count(0).to_f / placements.length.to_f * 100
         avg_score = scores.sum(0.0) / scores.size
         placement_score = placements.reduce(0) { |sum, place| sum + (total_players - 1 - place) }
         total_money_won = scores.sum
 
-        @results[player_name][:win_rate] = win_rate.round(1)
+        @results[player_name][:win_rate] = win_rate.round(2)
         @results[player_name][:avg_score] = avg_score.round(2)
         @results[player_name][:placement_score] = placement_score
         @results[player_name][:total_money_won] = total_money_won
