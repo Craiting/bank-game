@@ -11,6 +11,6 @@ require_relative "game_series"
 # g1.start
 
 # Run a game series and view the results
-gs = GameSeries.new(total_games: 100, rounds: 15)
+gs = GameSeries.new(total_games: 1000, rounds: 15)
 gs.run
 gs.print_summary

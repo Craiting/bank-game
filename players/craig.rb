@@ -38,7 +38,10 @@ class Craig < ::Player
   # must return boolean
   def cash_out?(game_state)
     # max_score = game_state[:other_players][0][]
-    if game_state[:pot_total] > 900
+    potential_score = score + game_state[:pot_total]
+    if score < 750 && potential_score > 750
+      return true
+    elsif score > 750 && game_state[:pot_total] > 100
       return true
     else
       return false
