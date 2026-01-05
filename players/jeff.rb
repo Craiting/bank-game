@@ -1,8 +1,9 @@
 require "./player"
 
-class Craig < ::Player
+class Jeff < ::Player
   def initialize
-    super("Craig")
+    # Don't forget to set your name below
+    super("Jeff")
   end
 
   # {
@@ -36,17 +37,22 @@ class Craig < ::Player
 
   # must return boolean
   def cash_out?(game_state)
-    max_score = game_state[:other_players][0][:score]
+    rounds_left = game_state[:total_rounds] - game_state[:round_number]
+    high_score = game_state[:other_players][0][:score]
+    score_diff = high_score - score
     potential_score = score + game_state[:pot_total]
-    return false if game_state[:roll_count] < 2
-    return true if game_state[:round_number] < 1 && potential_score > 35
-    if score < 750 && potential_score > 750
-      return true
-    elsif score > 750 && game_state[:pot_total] > 100
-      return true
-    else
+
+    if game_state[:roll_count] < 5
       return false
     end
+    if score > high_score
+      if game_state[:pot_total] > 50
+        return true
+      end
+    elsif potential_score > high_score
+      return true
+    end
+    return false
   end
 
   private
